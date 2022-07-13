@@ -1,0 +1,14 @@
+---
+- name: Restart EC2 instance
+  hosts: ansible-server
+  become: true
+
+  tasks:
+    - name: Start Hello
+      command: who am i
+    - name: Restart instance
+      local_action:
+        module: ec2
+        region: eu-west-1c
+        instance_ids: ['i-007945c0b1a9724d6']
+        state: restarted
